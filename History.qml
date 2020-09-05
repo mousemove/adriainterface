@@ -1,6 +1,6 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import QtQuick.Layouts 1.12
-
+import QtQuick.Controls 2.0
 Rectangle
 {
     z: -1
@@ -18,8 +18,7 @@ Rectangle
         delegate:
             Item {
             width: parent.width;
-            height:  60//todo переписать под динамику для больших текстов
-
+            height:  ( messageText.lineCount) * 15 + 20
 
             RowLayout {
                 id: layout
@@ -27,35 +26,36 @@ Rectangle
                 spacing: 15
                 Rectangle {
                     color: 'white'
-                    Layout.fillWidth: true
-                    Layout.minimumWidth: parent.width/2
-                    Layout.preferredWidth: parent.width/2
-                    Layout.maximumWidth: parent.width/2
-                    Layout.minimumHeight: 50
+                    Layout.minimumWidth: parent.width/2 -18
+                    Layout.preferredWidth: parent.width/2 - 18
+                    Layout.maximumWidth: parent.width/2 -18
+
+                    Layout.minimumHeight: messageText.lineCount * 15 + 10
                 //Layout.maximumHeight: 200
 
                     visible: from === "operator"
                 }
                 Rectangle {
-
+                    id:recid
                     color: from === "operator" ? '#e6ffff' : "#ffffe6"
                     Layout.fillWidth: true
+
                     Layout.minimumWidth: parent.width/2 -18
                     Layout.preferredWidth: parent.width/2 - 18
                     Layout.maximumWidth: parent.width/2 -18
 
-                    Layout.minimumHeight: 50
-                     //Layout.maximumHeight: 200
+                    Layout.minimumHeight: messageText.lineCount * 15 + 10
+
                     radius: 30
-                    Text {
+                    TextArea {
                         // anchors.centerIn: parent
                         id:messageText
                         anchors.fill:parent
                         anchors.leftMargin: 12
-
+                        Layout.fillWidth: true
                         text:    message
                         wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                        elide :Text.ElideRight
+                        //elide :Text.ElideRight
                     }
 
                 }
