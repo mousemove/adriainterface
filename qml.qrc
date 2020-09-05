@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ContactModel.qml</file>
+        <file>NoSelect.qml</file>
+        <file>Messages.qml</file>
+        <file>History.qml</file>
+        <file>HistoryModel.qml</file>
+    </qresource>
+</RCC>
